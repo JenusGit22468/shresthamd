@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dr. Jenisa Shrestha - ShresthaMD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="About Dr. Jenisa Shrestha - Board-certified physician specializing in family medicine and emergency medicine."
+  />
+
+  <!-- Professional, neutral fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --nav-height: 70px;
+      --text-main: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #666666;
+      --bg-page: #ffffff;
+      --bg-card: #ffffff;
+      --bg-light: #f8f9fa;
+      --border-light: #e9ecef;
+      --border-medium: #dee2e6;
+      --accent-red: #8c1515;
+      --accent-blue: #004d6b;
+      --max-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Source Sans 3", system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .site-header-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .brand-text-main {
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-main {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-red);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-phone {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent-blue);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-phone:hover {
+      background-color: var(--accent-blue);
+      color: white;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      transition: all 0.2s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-main {
+        display: none;
+      }
+      
+      .nav-phone {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .site-header-inner {
+        padding: 0 1rem;
+      }
+    }
+
+    /* ---------------- PAGE LAYOUT ---------------- */
+
+    .page-container {
+      padding-top: var(--nav-height);
+      min-height: 100vh;
+    }
+
+    .breadcrumb {
+      background-color: var(--bg-light);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .breadcrumb-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 2rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb a {
+      color: var(--accent-blue);
+      transition: color 0.2s ease;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--text-main);
+    }
+
+    .main-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* ---------------- DOCTOR PROFILE SIDEBAR ---------------- */
+
+    .doctor-sidebar {
+      position: sticky;
+      top: calc(var(--nav-height) + 2rem);
+    }
+
+    .doctor-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .doctor-quick-info {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quick-info-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .quick-info-item {
+      margin-bottom: 0.75rem;
+    }
+
+    .quick-info-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .quick-info-value {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .contact-phone {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      margin-bottom: 1rem;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--accent-red);
+      color: white;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
+
+    .contact-btn:hover {
+      background-color: #7a0e0e;
+    }
+
+    /* ---------------- MAIN CONTENT ---------------- */
+
+    .doctor-main {
+      min-width: 0; /* Prevent grid item overflow */
+    }
+
+    .doctor-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .doctor-name {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .doctor-title {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .doctor-credentials {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .content-section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-red);
+      display: inline-block;
+    }
+
+    .section-content p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      text-align: justify;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .info-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-item {
+      background: var(--bg-light);
+      padding: 1rem;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent-blue);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 1024px) {
+      .main-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .doctor-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 200px 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .doctor-photo {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 2rem 1rem;
+      }
+
+      .breadcrumb-inner {
+        padding: 0 1rem;
+      }
+
+      .doctor-sidebar {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .doctor-name {
+        font-size: 2rem;
+      }
+
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .doctor-name {
+        font-size: 1.75rem;
+      }
+
+      .doctor-title {
+        font-size: 1.1rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-text-main">Shrestha<span style="color: #8c1515;">MD</span></div>
+      </a>
+
+      <nav class="nav-main">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#patient-forms" class="nav-link">Patient Forms</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <a href="tel:8592851065" class="nav-phone">(859) 285-1065</a>
+      
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="page-container">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <div class="breadcrumb-inner">
+        <a href="index.html">Home</a> / <a href="#about">About</a> / Dr. Jenisa Shrestha
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      <!-- SIDEBAR -->
+      <aside class="doctor-sidebar">
+        <div class="doctor-photo">
+          Dr. Jenisa Shrestha
+        </div>
+
+        <div class="doctor-quick-info">
+          <h3 class="quick-info-title">Quick Info</h3>
+          <div class="quick-info-item">
+            <div class="quick-info-label">Specialties</div>
+            <div class="quick-info-value">Family Medicine, Emergency Medicine</div>
+          </div>
+          <div class="quick-info-item">
+            <div class="quick-info-label">Board Certifications</div>
+            <div class="quick-info-value">Family Medicine, Emergency Medicine</div>
+          </div>
+          <div class="quick-info-item">
+            <div class="quick-info-label">Languages</div>
+            <div class="quick-info-value">English</div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-phone">(859) 285-1065</div>
+          <a href="tel:8592851065" class="contact-btn">Call Office</a>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="doctor-main">
+        <header class="doctor-header">
+          <h1 class="doctor-name">Jenisa Shrestha, MD</h1>
+          <div class="doctor-title">Family Medicine & Emergency Medicine Physician</div>
+          <div class="doctor-credentials">Lifestyle Medicine Fellowship Trained</div>
+        </header>
+
+        <section class="content-section">
+          <h2 class="section-title">About Dr. Shrestha</h2>
+          <div class="section-content">
+            <p>
+              Dr. Shrestha is a highly skilled physician specializing in both family medicine and emergency medicine. Her diverse expertise allows her to provide comprehensive care across a wide range of medical needs, making her a versatile and invaluable asset to her patients and the community.
+            </p>
+            <p>
+              After completing medical school, Dr. Shrestha completed family medicine training. Along with that, she completed fellowship training in lifestyle medicine. She further honed her skills by pursuing specialized fellowship training in emergency medicine, equipping her to handle urgent and critical medical situations with precision and efficiency. This dual expertise enables Dr. Shrestha to offer a unique blend of preventive care and acute medical intervention.
+            </p>
+            <p>
+              With a patient-centered approach, Dr. Shrestha is dedicated to fostering long-term relationships with her patients, ensuring continuity of care through all stages of life. Her practice is rooted in the belief that effective healthcare is not only about treating illnesses but also about educating and empowering patients to lead healthier lives.
+            </p>
+            <p>
+              In her role as an emergency medicine specialist, Dr. Shrestha thrives in high-pressure environments, delivering swift and accurate medical care during critical situations. Her calm demeanor and decisive action are reassuring to both patients and colleagues alike.
+            </p>
+            <p>
+              Outside of her professional commitments, Dr. Shrestha is actively involved in community outreach and health education programs. She is passionate about raising awareness and providing resources that promote health and wellness within the community.
+            </p>
+            <p>
+              Dr. Shrestha's commitment to excellence in both family and emergency medicine makes her a trusted healthcare provider who is deeply dedicated to improving the well-being of her patients.
+            </p>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Education & Training</h2>
+          <div class="section-grid">
+            <div class="info-card">
+              <h4>Medical Education</h4>
+              <ul class="info-list">
+                <li>Family Medicine Residency - Michigan State University</li>
+                <li>Emergency Medicine Fellowship - University of Tennessee</li>
+                <li>Lifestyle Medicine Fellowship - McLaren Flint</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <h4>Board Certifications</h4>
+              <ul class="info-list">
+                <li>American Board of Family Medicine</li>
+                <li>American Board of Emergency Medicine</li>
+                <li>Lifestyle Medicine Certification</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Areas of Expertise</h2>
+          <div class="skills-grid">
+            <div class="skill-item">Family Medicine</div>
+            <div class="skill-item">Emergency Medicine</div>
+            <div class="skill-item">Primary Care</div>
+            <div class="skill-item">Urgent Care</div>
+            <div class="skill-item">Lifestyle Medicine</div>
+            <div class="skill-item">Diagnostic Ultrasound</div>
+            <div class="skill-item">Interventional Ultrasound</div>
+            <div class="skill-item">Dermatology Procedures</div>
+            <div class="skill-item">Aesthetic Medicine</div>
+            <div class="skill-item">Preventive Care</div>
+            <div class="skill-item">Community Health</div>
+            <div class="skill-item">Patient Education</div>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Community Involvement</h2>
+          <div class="section-content">
+            <p>
+              Dr. Shrestha is actively involved in community outreach and health education programs. She is passionate about raising awareness and providing resources that promote health and wellness within the community. Her commitment extends beyond clinical practice to encompass community health initiatives and patient education.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMain = document.querySelector('.nav-main');
+
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        navMain.style.display = navMain.style.display === 'flex' ? 'none' : 'flex';
+      });
+    }
+  </script>
+</body>
+</html>
