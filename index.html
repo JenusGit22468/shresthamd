@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Summit Sports Medicine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Sports medicine and orthopedic care for athletes and active individuals."
+  />
+
+  <!-- Professional, neutral fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --nav-height: 80px;
+      --accent: #2563eb;       /* blue accent */
+      --accent-dark: #1d4ed8;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --bg-page: #f3f4f6;
+      --bg-card: #ffffff;
+      --border-soft: #e5e7eb;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.75rem;
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .site-header-inner {
+      pointer-events: auto;
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      column-gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: #ffffff;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .brand-text-main {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-text-sub {
+      font-size: 0.72rem;
+      opacity: 0.85;
+    }
+
+    .nav-main {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-link {
+      position: relative;
+      color: #e5e7eb;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background-color: #ffffff;
+      transition: width 0.18s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
+      color: #f9fafb;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-phone span.icon {
+      font-size: 0.85rem;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1.25rem;
+      border-radius: 999px;
+      border: none;
+      background-color: var(--accent);
+      color: #ffffff;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease,
+        box-shadow 0.15s ease;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+    }
+
+    .nav-cta:hover {
+      background-color: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.55);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(15, 23, 42, 0.6);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #ffffff;
+      position: relative;
+      display: inline-block;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #ffffff;
+    }
+
+    .nav-toggle span::before {
+      top: -6px;
+    }
+
+    .nav-toggle span::after {
+      top: 6px;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: var(--nav-height) 1.25rem auto;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 0.6rem 1.1rem 0.9rem;
+      backdrop-filter: blur(16px);
+      display: none;
+      z-index: 19;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 0;
+      color: #e5e7eb;
+      font-size: 0.86rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 900px) {
+      .nav-main {
+        display: none;
+      }
+
+      .nav-phone {
+        display: none;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .site-header-inner {
+        padding-inline: 1.25rem;
+      }
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      background-color: #020617;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+          to bottom,
+          rgba(15, 23, 42, 0.25),
+          rgba(15, 23, 42, 0.9)
+        ),
+        linear-gradient(
+          to right,
+          rgba(15, 23, 42, 0.85),
+          rgba(15, 23, 42, 0.7)
+        );
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: calc(var(--nav-height) + 1.5rem) 1.75rem 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.1fr);
+      column-gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #d1d5db;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 3.6vw, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title span {
+      color: #e5e7eb;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      max-width: 30rem;
+      color: #e5e7eb;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-subtitle strong {
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease,
+        border-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.55);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 20px 50px rgba(37, 99, 235, 0.65);
+    }
+
+    .btn-outline-light {
+      border-color: rgba(209, 213, 219, 0.9);
+      color: #e5e7eb;
+      background-color: transparent;
+    }
+
+    .btn-outline-light:hover {
+      background-color: rgba(15, 23, 42, 0.8);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.82rem;
+      color: #d1d5db;
+    }
+
+    .hero-meta-group {
+      min-width: 160px;
+    }
+
+    .hero-meta-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .hero-tag {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.75rem;
+    }
+
+    .hero-card {
+      max-width: 360px;
+      margin-left: auto;
+      background-color: #ffffff;
+      color: var(--text-main);
+      border-radius: 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.45);
+      padding: 1.35rem 1.4rem 1.5rem;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .hero-card-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .hero-card-chip {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background-color: #f9fafb;
+    }
+
+    .hero-slot-main {
+      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-slot-main strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-top: 0.15rem;
+    }
+
+    .hero-slot-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-card-tag {
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 0.75rem;
+      background-color: #f9fafb;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .hero-status {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-muted);
+    }
+
+    .hero-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: #22c55e;
+    }
+
+    .hero-card-cta {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background-color: #eff6ff;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 2rem;
+        padding-inline: 1.25rem;
+      }
+
+      .hero-card {
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .hero-subtitle {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-meta {
+        flex-direction: column;
+      }
+    }
+
+    /* ---------------- SECTIONS BELOW HERO ---------------- */
+
+    .section {
+      padding: 4rem 0 4.5rem;
+      background-color: var(--bg-page);
+    }
+
+    .section-header {
+      margin-bottom: 2.3rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-copy {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 640px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 2.1fr);
+      column-gap: 2.4rem;
+      row-gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .section-note {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1.1rem;
+    }
+
+    .pill-soft {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background-color: #ffffff;
+      font-size: 0.8rem;
+    }
+
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .info-card {
+      background-color: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      padding: 1.1rem 1.15rem 1.25rem;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+    }
+
+    .info-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .info-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-text {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 880px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .card-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .card-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ---------------- SIMPLE REVEAL ANIMATION ---------------- */
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="brand">
+        <div class="brand-logo">SM</div>
+        <div>
+          <div class="brand-text-main">Summit Sports Medicine</div>
+          <div class="brand-text-sub">Sports Medicine & Orthopedic Care</div>
+        </div>
+      </div>
+
+      <nav class="nav-main">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#conditions" class="nav-link">Conditions</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-right">
+        <a class="nav-phone" href="tel:4697188781">
+          <span class="icon">📞</span>
+          <span>469-718-8781</span>
+        </a>
+        <button
+          class="nav-cta"
+          onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});"
+        >
+          Schedule Visit
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#conditions">Conditions</a>
+      <a href="#contact">Contact & Visit</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-video">
+      <!-- Replace src with your actual hero video file -->
+      <video autoplay muted loop playsinline poster="">
+        <source src="media/hero-sports.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">
+          Private sports medicine clinic in [City]
+        </div>
+
+        <h1 class="hero-title">
+          Complete care<br />
+          for every <span>body</span>.
+        </h1>
+
+        <p class="hero-subtitle">
+          Sports medicine and orthopedic care for athletes, active adults, and anyone who
+          wants to move without pain. <strong>Same-week appointments</strong> and treatment
+          plans tailored to your sport and your goals.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Request an appointment</a>
+          <a href="tel:4697188781" class="btn btn-outline-light">Call the clinic</a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-group">
+            <div class="hero-meta-label">We commonly see</div>
+            <div class="hero-tags">
+              <span class="hero-tag">Knee & ACL injuries</span>
+              <span class="hero-tag">Shoulder & rotator cuff</span>
+              <span class="hero-tag">Stress & overuse injuries</span>
+            </div>
+          </div>
+          <div class="hero-meta-group">
+            <div class="hero-meta-label">Who we treat</div>
+            <div class="hero-tags">
+              <span class="hero-tag">Competitive athletes</span>
+              <span class="hero-tag">Weekend warriors</span>
+              <span class="hero-tag">Active professionals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Next available appointment">
+        <div class="hero-card-header">
+          <div>
+            <div class="hero-card-label">New & returning patients</div>
+            <div class="hero-card-title">Next available visit</div>
+          </div>
+          <div class="hero-card-chip">Same-week</div>
+        </div>
+
+        <div class="hero-slot-main">
+          As early as
+          <strong>Tomorrow · 8:30 AM</strong>
+        </div>
+
+        <div class="hero-slot-note">
+          In-person and virtual sports injury consultations. Early morning and late-afternoon
+          appointments to work around training and work schedules.
+        </div>
+
+        <div class="hero-card-tags">
+          <span class="hero-card-tag">Acute injuries</span>
+          <span class="hero-card-tag">Chronic pain flares</span>
+          <span class="hero-card-tag">Post-op follow-up</span>
+          <span class="hero-card-tag">Return-to-sport planning</span>
+        </div>
+
+        <div class="hero-card-footer">
+          <div class="hero-status">
+            <span class="hero-status-dot"></span>
+            <span>Accepting new patients · Most major insurance</span>
+          </div>
+          <button
+            class="hero-card-cta"
+            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});"
+          >
+            Hold my spot
+          </button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">About the clinic</div>
+        <h2 class="section-title">Sports medicine designed around your life.</h2>
+        <p class="section-copy">
+          We take the time to understand your sport, your training schedule, and what
+          you're trying to get back to. Each visit includes a clear explanation,
+          straightforward imaging and treatment recommendations, and a written plan
+          you can actually follow.
+        </p>
+      </div>
+
+      <div class="section-grid">
+        <div class="section-note" data-reveal>
+          Typical first visits last 40–60 minutes, with time for a full history,
+          focused exam, and discussion. We work closely with physical therapists,
+          athletic trainers, and surgeons when needed so that everyone on your team
+          is on the same page.
+          <div class="pill-row">
+            <span class="pill-soft">Evidence-based care</span>
+            <span class="pill-soft">Communication with your PT & coach</span>
+            <span class="pill-soft">Clear return-to-sport timelines</span>
+          </div>
+        </div>
+
+        <div class="card-row" id="conditions">
+          <article class="info-card" data-reveal>
+            <div class="info-label">Lower extremity</div>
+            <h3 class="info-title">Knee, ankle & hip</h3>
+            <p class="info-text">
+              ACL and meniscus injuries, patellofemoral pain, ankle sprains, stress
+              reactions, and running-related injuries with structured return-to-run plans.
+            </p>
+          </article>
+
+          <article class="info-card" data-reveal>
+            <div class="info-label">Upper extremity</div>
+            <h3 class="info-title">Shoulder, elbow & hand</h3>
+            <p class="info-text">
+              Rotator cuff and labral tears, throwing-related elbow pain, and post-surgical
+              rehab guidance tailored to your position and season.
+            </p>
+          </article>
+
+          <article class="info-card" data-reveal>
+            <div class="info-label">Spine & overuse</div>
+            <h3 class="info-title">Back, neck & chronic load</h3>
+            <p class="info-text">
+              Lumbar and cervical pain, overuse syndromes, and workload management so
+              you can keep training safely instead of stopping everything.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Contact & visit</div>
+        <h2 class="section-title">Ready to schedule?</h2>
+        <p class="section-copy">
+          We’ll plug in your actual online scheduling link and map here. For now,
+          patients can call or email and our team will help you find a time that fits.
+        </p>
+      </div>
+
+      <div class="section-grid">
+        <div class="section-note" data-reveal>
+          <p><strong>Phone:</strong> <a href="tel:4697188781">469-718-8781</a></p>
+          <p><strong>Email:</strong> <a href="mailto:info@summitsportsmed.com">info@summitsportsmed.com</a></p>
+          <p><strong>Location:</strong> [Clinic address here]</p>
+          <p style="margin-top: 1rem;">
+            Please bring any prior imaging reports, operative notes, and a list of
+            your current medications. Wear or bring clothes you can move in for your
+            exam.
+          </p>
+        </div>
+
+        <div data-reveal>
+          <div class="info-card">
+            <div class="info-label">Online requests</div>
+            <h3 class="info-title">Appointment request form</h3>
+            <p class="info-text">
+              This is where your embedded form or scheduling widget will go
+              (Acuity, Jane, Prompt, etc.). For now, this button can link to your
+              patient portal or contact form.
+            </p>
+            <div style="margin-top: 1.1rem;">
+              <a href="#"
+                 class="btn btn-primary"
+                 style="font-size:0.82rem; letter-spacing:0.14em; padding-inline:1.4rem;">
+                Open scheduling form
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    navToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+      });
+    });
+
+    // Simple scroll reveal
+    const revealEls = document.querySelectorAll("[data-reveal]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealEls.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
